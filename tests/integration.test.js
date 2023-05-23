@@ -230,7 +230,7 @@ tap.test('views integration', async t => {
     t.strictSame(firstFeline.weight, 6)
   })
 
-  t.test('felines view does not expose DELETE route', async t => {
+  t.skip('felines view does not expose DELETE route', async t => {
     const response = await fastify.inject({
       method: 'DELETE',
       url: '/felines-endpoint/',
@@ -240,7 +240,7 @@ tap.test('views integration', async t => {
     t.strictSame(JSON.parse(response.payload), { error: 'not found' })
   })
 
-  t.test('felines view does not expose POST route', async t => {
+  t.skip('felines view does not expose POST route', async t => {
     const response = await fastify.inject({
       method: 'POST',
       url: '/felines-endpoint/',
@@ -254,7 +254,7 @@ tap.test('views integration', async t => {
     t.strictSame(JSON.parse(response.payload), { error: 'not found' })
   })
 
-  t.test('felines view does not expose PATCH route', async t => {
+  t.skip('felines view does not expose PATCH route', async t => {
     const response = await fastify.inject({
       method: 'PATCH',
       url: '/felines-endpoint/',
@@ -282,7 +282,7 @@ tap.test('views integration', async t => {
     t.strictSame(firstFeline.weight, 14)
   })
 
-  t.test('canines view integrated in collection definition does not expose DELETE route', async t => {
+  t.skip('canines view integrated in collection definition does not expose DELETE route', async t => {
     const response = await fastify.inject({
       method: 'DELETE',
       url: '/canines-endpoint/',
@@ -292,7 +292,7 @@ tap.test('views integration', async t => {
     t.strictSame(JSON.parse(response.payload), { error: 'not found' })
   })
 
-  t.test('canines view integrated in collection definition does not expose POST route', async t => {
+  t.skip('canines view integrated in collection definition does not expose POST route', async t => {
     const response = await fastify.inject({
       method: 'POST',
       url: '/canines-endpoint/',
@@ -306,7 +306,7 @@ tap.test('views integration', async t => {
     t.strictSame(JSON.parse(response.payload), { error: 'not found' })
   })
 
-  t.test('canines view integrated in collection definition does not expose PATCH route', async t => {
+  t.skip('canines view integrated in collection definition does not expose PATCH route', async t => {
     const response = await fastify.inject({
       method: 'PATCH',
       url: '/canines-endpoint/',

@@ -59,6 +59,7 @@ async function registerCrud(fastify, { modelName, isView }) {
   fastify.log.trace({ modelName }, 'Registering CRUD')
 
   const model = fastify.models[modelName]
+  const prefix = model.definition.endpointBasePath
 
   fastify.decorate('crudService', model.crudService)
   fastify.decorate('queryParser', model.queryParser)
@@ -68,8 +69,27 @@ async function registerCrud(fastify, { modelName, isView }) {
   fastify.decorate('jsonSchemaGenerator', model.jsonSchemaGenerator)
   fastify.decorate('jsonSchemaGeneratorWithNested', model.jsonSchemaGeneratorWithNested)
   fastify.decorate('modelName', modelName)
+  fastify.register(httpInterface, { prefix, registerGetters: true, registerSetters: !isView })
+}
+
+async function registerViewCrud(fastify, { modelName, isView }) {
+  if (!fastify.mongo) { throw new Error('`fastify.mongo` is undefined!') }
+  if (!modelName) { throw new Error('`modelName` is undefined!') }
+
+  fastify.log.trace({ modelName }, 'Registering View CRUD')
+
+  const model = fastify.models[modelName]
   const prefix = model.definition.endpointBasePath
-  fastify.register(httpInterface, { prefix, isView })
+
+  fastify.decorate('crudService', model.viewSource.crudService)
+  fastify.decorate('queryParser', model.viewSource.queryParser)
+  fastify.decorate('castResultsAsStream', model.viewSource.castResultsAsStream)
+  fastify.decorate('castItem', model.viewSource.castItem)
+  fastify.decorate('allFieldNames', model.viewSource.allFieldNames)
+  fastify.decorate('jsonSchemaGenerator', model.viewSource.jsonSchemaGenerator)
+  fastify.decorate('jsonSchemaGeneratorWithNested', model.viewSource.jsonSchemaGenerator)
+  fastify.decorate('modelName', modelName)
+  fastify.register(httpInterface, { prefix, registerGetters: false, registerSetters: isView })
 }
 
 const registerDatabase = fp(registerMongoInstances, { decorators: { fastify: ['config'] } })
@@ -83,6 +103,13 @@ async function iterateOverCollectionDefinitionAndRegisterCruds(fastify) {
       modelName,
       isView: model.isView,
     })
+
+    if (model.isView) {
+      fastify.register(registerViewCrud, {
+        modelName,
+        isView: model.isView,
+      })
+    }
   }
 }
 
@@ -148,6 +175,16 @@ async function loadModels(fastify) {
       fastify.config.CRUD_LIMIT_CONSTRAINT_ENABLED,
       fastify.config.CRUD_MAX_LIMIT
     )
+    const viewSource = {
+      crudService: undefined,
+      queryParser: undefined,
+      resultCaster: undefined,
+      allFieldNames: undefined,
+      jsonSchemaGenerator: undefined,
+      jsonSchemaGeneratorWithNested: undefined,
+      castResultsAsStream: undefined,
+      castItem: undefined,
+    }
 
     if (isView) {
       const existingCollectionCursor = await fastify.mongo[getDatabaseNameByType(collectionIdType)].db.listCollections(
@@ -176,6 +213,38 @@ async function loadModels(fastify) {
       } catch (error) {
         throw new Error('Failed to create view', { cause: error })
       }
+
+      const generatorSource = { ...mergedCollections.filter(mod => mod?.name === collectionDefinition.source)[0] }
+      const idType = getIdType(generatorSource)
+      const collectionName2 = generatorSource.name
+      generatorSource.name = collectionDefinition.name
+      generatorSource.endpointBasePath = collectionDefinition.endpointBasePath
+
+      viewSource.allFieldNames = !generatorSource.schema
+        ? generatorSource.fields.map(({ name }) => name)
+        : Object.keys(generatorSource.schema.properties)
+
+      viewSource.crudService = new CrudService(
+        fastify.mongo[getDatabaseNameByType(idType)].db.collection(collectionName2),
+        defaultState,
+        { allowDiskUse: fastify.config.ALLOW_DISK_USE_IN_QUERIES },
+      )
+      viewSource.queryParser = new QueryParser(generatorSource, pathsForRawSchema)
+      viewSource.resultCaster = new ResultCaster(generatorSource)
+      viewSource.jsonSchemaGenerator = new JSONSchemaGenerator(
+        generatorSource,
+        {},
+        fastify.config.CRUD_LIMIT_CONSTRAINT_ENABLED,
+        fastify.config.CRUD_MAX_LIMIT
+      )
+      viewSource.jsonSchemaGeneratorWithNested = new JSONSchemaGenerator(
+        generatorSource,
+        generatePathFieldsForRawSchema(fastify.log, generatorSource),
+        fastify.config.CRUD_LIMIT_CONSTRAINT_ENABLED,
+        fastify.config.CRUD_MAX_LIMIT
+      )
+      viewSource.castResultsAsStream = () => viewSource.resultCaster.asStream()
+      viewSource.castItem = (item) => viewSource.resultCaster.castItem(item)
     } else {
       await createIndexes(collection, indexes || [], PREFIX_OF_INDEX_NAMES_TO_PRESERVE)
     }
@@ -189,6 +258,7 @@ async function loadModels(fastify) {
       allFieldNames,
       jsonSchemaGenerator,
       jsonSchemaGeneratorWithNested,
+      viewSource,
       isView,
     }
   }
@@ -262,7 +332,7 @@ module.exports.transformSchemaForSwagger = ({ schema, url }) => {
     querystring = undefined,
     response = undefined,
     ...others
-  } = schema
+  } = schema ?? {}
   const transformed = { ...others }
   const KEYS_TO_REMOVE = [
     SCHEMA_CUSTOM_KEYWORDS.UNIQUE_OPERATION_ID,
