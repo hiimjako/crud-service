@@ -495,6 +495,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('aaaaaaaaaaaaaaaaaaaaaaaa'),
@@ -515,6 +516,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('222222222222222222222222'),
           displayName: 'via dei Pazzi, 0',
           house_number: 0,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('bbbbbbbbbbbbbbbbbbbbbbbb'),
@@ -541,6 +543,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('cccccccccccccccccccccccc'),
@@ -572,6 +575,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('aaaaaaaaaaaaaaaaaaaaaaaa'),
@@ -592,6 +596,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('cccccccccccccccccccccccc'),
@@ -623,6 +628,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('dddddddddddddddddddddddd'),
@@ -637,6 +643,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('222222222222222222222222'),
           displayName: 'via dei Pazzi, 0',
           house_number: 0,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('eeeeeeeeeeeeeeeeeeeeeeee'),
@@ -651,6 +658,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: [
           ],
           street: 'via Cilea',
@@ -676,6 +684,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: [
             {
               _id: new ObjectId('dddddddddddddddddddddddd'),
@@ -690,6 +699,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: [
           ],
           street: 'via Cilea',
@@ -790,6 +800,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('aaaaaaaaaaaaaaaaaaaaaaaa'),
             addressId: new ObjectId('111111111111111111111111'),
@@ -802,6 +813,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('222222222222222222222222'),
           displayName: 'via dei Pazzi, 0',
           house_number: 0,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('bbbbbbbbbbbbbbbbbbbbbbbb'),
             addressId: new ObjectId('222222222222222222222222'),
@@ -814,6 +826,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('cccccccccccccccccccccccc'),
             addressId: new ObjectId('333333333333333333333333'),
@@ -843,6 +856,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('aaaaaaaaaaaaaaaaaaaaaaaa'),
             addressId: new ObjectId('111111111111111111111111'),
@@ -855,6 +869,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('cccccccccccccccccccccccc'),
             addressId: new ObjectId('333333333333333333333333'),
@@ -884,6 +899,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('dddddddddddddddddddddddd'),
             addressId: new ObjectId('111111111111111111111111'),
@@ -896,6 +912,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('222222222222222222222222'),
           displayName: 'via dei Pazzi, 0',
           house_number: 0,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('eeeeeeeeeeeeeeeeeeeeeeee'),
             addressId: new ObjectId('222222222222222222222222'),
@@ -908,6 +925,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: null,
           street: 'via Cilea',
         },
@@ -932,6 +950,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           stats: {
             _id: new ObjectId('dddddddddddddddddddddddd'),
             addressId: new ObjectId('111111111111111111111111'),
@@ -944,6 +963,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           stats: null,
           street: 'via Cilea',
         },
@@ -968,6 +988,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           addressId: new ObjectId('111111111111111111111111'),
           count: 1,
           tag: 'tag1',
@@ -977,6 +998,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('222222222222222222222222'),
           displayName: 'via dei Pazzi, 0',
           house_number: 0,
+          __STATE__: 'PUBLIC',
           addressId: new ObjectId('222222222222222222222222'),
           count: 2,
           tag: 'tag1',
@@ -986,6 +1008,7 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           addressId: new ObjectId('333333333333333333333333'),
           count: 3,
           tag: 'tag1',
@@ -1068,18 +1091,21 @@ tap.test('JoinService', async t => {
           _id: new ObjectId('111111111111111111111111'),
           displayName: 'via Calatafimi, 11',
           house_number: 11,
+          __STATE__: 'PUBLIC',
           street: 'via Calatafimi',
         },
         {
           _id: new ObjectId('222222222222222222222222'),
           displayName: 'via dei Pazzi, 0',
           house_number: 0,
+          __STATE__: 'PUBLIC',
           street: 'via dei Pazzi',
         },
         {
           _id: new ObjectId('333333333333333333333333'),
           displayName: 'via Cilea, 123',
           house_number: 123,
+          __STATE__: 'PUBLIC',
           street: 'via Cilea',
         },
       ])

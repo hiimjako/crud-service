@@ -765,11 +765,27 @@ tap.test('MP4-462: default state ignored on /bulk when at least one document has
         environments: [],
       }],
     },
+    orders: {
+      docs: [{
+        address: {
+          value: 'aaaaaaaaaaaaaaaaaaaaaaaa',
+          label: 'string',
+        },
+        items: ['pasta'],
+        __STATE__: STATES.PUBLIC,
+      }, {
+        address: {
+          value: 'bbbbbbbbbbbbbbbbbbbbbbbb',
+          label: 'string',
+        },
+        items: ['pizza'],
+      }],
+    },
   }
 
   const collections = readdirSync(path.join(__dirname, 'collectionDefinitions'))
 
-  const collectionsToSkip = ['felines.js', 'canines.js', 'store.js', 'store-open.js']
+  const collectionsToSkip = ['felines.js', 'canines.js', 'store.js', 'store-open.js', 'orders-details.js']
 
   const filteredCollections = collections.filter(collection => !collectionsToSkip.includes(collection))
 

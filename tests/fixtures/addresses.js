@@ -17,6 +17,10 @@
 'use strict'
 
 const { ObjectId } = require('mongodb')
+const {
+  __STATE__,
+  STATES,
+} = require('../../lib/consts')
 
 module.exports = [
   {
@@ -24,17 +28,20 @@ module.exports = [
     displayName: 'via Calatafimi, 11',
     street: 'via Calatafimi',
     house_number: 11,
+    [__STATE__]: STATES.PUBLIC,
   },
   {
     _id: new ObjectId('222222222222222222222222'),
     displayName: 'via dei Pazzi, 0',
     street: 'via dei Pazzi',
     house_number: 0,
+    [__STATE__]: STATES.PUBLIC,
   },
   {
     _id: new ObjectId('333333333333333333333333'),
     displayName: 'via Cilea, 123',
     street: 'via Cilea',
     house_number: 123,
+    [__STATE__]: STATES.PUBLIC,
   },
 ]

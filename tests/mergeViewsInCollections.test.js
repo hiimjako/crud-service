@@ -36,6 +36,7 @@ tap.test('mergeViewsInCollections', t => {
     t.strictSame(mergedFelines, {
       name: 'felines',
       endpointBasePath: '/felines-endpoint',
+      optionalEndpoint: false,
       defaultState: 'PUBLIC',
       fields: felinesColl.fields,
       indexes: felinesColl.indexes,

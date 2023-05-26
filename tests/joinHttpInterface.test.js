@@ -223,6 +223,7 @@ tap.test('HTTP POST /join', async t => {
             displayName: 'via Calatafimi, 11',
             street: 'via Calatafimi',
             house_number: 11,
+            __STATE__: 'PUBLIC',
             stats: [
               {
                 _id: 'aaaaaaaaaaaaaaaaaaaaaaaa',
@@ -242,6 +243,7 @@ tap.test('HTTP POST /join', async t => {
             _id: '222222222222222222222222',
             displayName: 'via dei Pazzi, 0',
             house_number: 0,
+            __STATE__: 'PUBLIC',
             street: 'via dei Pazzi',
             stats: [
               {
@@ -268,6 +270,7 @@ tap.test('HTTP POST /join', async t => {
             _id: '333333333333333333333333',
             displayName: 'via Cilea, 123',
             house_number: 123,
+            __STATE__: 'PUBLIC',
             street: 'via Cilea',
             stats: [
               {

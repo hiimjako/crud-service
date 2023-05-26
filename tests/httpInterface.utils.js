@@ -61,7 +61,7 @@ async function setUpTest(
   const fastify = await lc39('./index', { logLevel, envVariables, exposeMetrics })
 
   tap.teardown(async() => {
-    await database.dropDatabase()
+    // await database.dropDatabase()
     await client.close()
     await fastify.close()
   })
