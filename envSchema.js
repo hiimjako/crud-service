@@ -53,7 +53,7 @@ const properties = {
     description: 'Change the maximum limit of objects returned by a Mongo query',
     default: 200,
   },
-  MAX_MULTIPART_FILE_SIZE: {
+  MAX_MULTIPART_FILE_BYTES: {
     type: 'number',
     description: 'The max size (Mb) that is possible to process in multipart requests',
     default: 100,

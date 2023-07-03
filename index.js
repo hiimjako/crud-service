@@ -442,7 +442,7 @@ module.exports = async function plugin(fastify, opts) {
     limits: {
       fields: 5,
       // Conversion Byte to Mb
-      fileSize: fastify.config.MAX_MULTIPART_FILE_SIZE * 1000000,
+      fileSize: fastify.config.MAX_MULTIPART_FILE_BYTES * 1000000,
       files: 1,
     },
   })
