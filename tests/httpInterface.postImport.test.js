@@ -119,7 +119,9 @@ tap.test('HTTP POST /import', async t => {
         })
 
         t.test('and documents are really into collection', async t => {
-          const documents = await collection.find().toArray()
+          const documents = await collection.find()
+            .sort({ _id: 1 })
+            .toArray()
 
           for (const document of documents) {
             t.strictSame(document[CREATORID], newUpdaterId)
